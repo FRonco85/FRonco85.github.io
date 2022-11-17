@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+<!-- we import arjs version without NFT but with marker + location based support -->
+<!--script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script-->
+
+<!-- ADDED NFT -->
+<!-- we import arjs version with NFT support -->
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+<head>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+    <div class="arjs-loader">
+        <div>Loading, please wait...</div>
+    </div>
+
+    <a class="spreaker-player" href="https://www.spreaker.com/user/14484115/mao-master" data-resource="episode_id=45105737" data-theme="dark" data-playlist="false" data-width="100%" data-height="80px">Ascolta "Yang Guifei - MAO (Museo d’Arte Orientale di Torino)" su Spreaker.</a><script async src="https://widget.spreaker.com/widgets.js"></script>
+    <button class="button">Info</button>
+
+    <!-- Marker scene -->
+    <!--
+    <a-scene vr-mode-ui="enabled: false" embedded arjs>
+        
+        <a-marker type="pattern" url="patterns/pattern-LY.patt">
+            <a-entity
+                position="0 0 0"
+                scale="19.231 19.231 19.231"
+                obj-model="obj: url(/media/dama.obj);mtl: url(/media/dama.mtl);"
+                animation="property: rotation; dur: 6000; to: 0 360 0; loop: true; easing: linear;"
+            > </a-entity>
+        </a-marker>
+
+        <a-entity camera></a-entity>
+
+    </a-scene>
+    -->
+
+    <!-- ADDED NFT -->
+    <!-- NFT scene -->
+    <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+
+            <a-nft type="nft" url="nfts/pinball" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+
+                <!-- VIDEO -->
+
+                <!--
+                <a-entity
+                    position="500 0 0"
+                    scale="1000 1000 1000"
+                    obj-model="obj: url(/media/dama.obj);mtl: url(/media/dama.mtl);"
+                    animation="property: rotation; dur: 6000; to: 0 360 0; loop: true; easing: linear;"
+                > </a-entity>
+                -->
+
+                <!-- VIDEO -->
+                <a-video
+                    src="media/videosample.mp4"
+                    position="0 0 10"
+                    rotation="90 0 0"
+                    scale="100 100 100"
+                ></a-video>
+
+    </a-nft>
+
+    </a-scene>
+
+    <!-- ADDED NFT -->
+    <script>
+        // Workaround for an AR.js bug (https://github.com/jeromeetienne/AR.js/issues/410)
+        const sceneEl = document.querySelector('a-scene');
+        sceneEl.addEventListener('loaded', () => {
+            sceneEl.camera = new THREE.PerspectiveCamera();
+        });
+    </script>
+
+</body>
+</html>
